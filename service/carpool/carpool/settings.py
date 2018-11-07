@@ -137,7 +137,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ.get('CARPOOL_DATABASE_NAME'),
-        'USER': os.environ.get('CARPOOL_DATABASE_USERNAME', 'carpooluser'),
+        'USER': os.environ.get('CARPOOL_DATABASE_USERNAME'),
         'PASSWORD': os.environ.get('CARPOOL_DATABASE_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '3306',
