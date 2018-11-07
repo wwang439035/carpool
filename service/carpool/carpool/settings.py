@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user_service.apps.UserServiceConfig',
+    'rest_framework',
+    'user',
+    'notification'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('CARPOOL_DATABASE_NAME'),
+        'USER': os.environ.get('CARPOOL_DATABASE_USERNAME', 'carpooluser'),
+        'PASSWORD': os.environ.get('CARPOOL_DATABASE_PASSWORD'),
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
