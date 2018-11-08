@@ -54,14 +54,30 @@
 		7C2493CE2193743D00E10869 /* Swift Carpoolers */ = {
 			isa = PBXGroup;
 			children = (
-				7C2493CF2193743D00E10869 /* AppDelegate.swift */,
-				7C2493D12193743D00E10869 /* ViewController.swift */,
-				7C2493D32193743D00E10869 /* Main.storyboard */,
+				7CD351EA2194AB85005EFB28 /* View */,
+				7CD351E92194AB3A005EFB28 /* Controller */,
 				7C2493D62193743E00E10869 /* Assets.xcassets */,
-				7C2493D82193743E00E10869 /* LaunchScreen.storyboard */,
 				7C2493DB2193743E00E10869 /* Info.plist */,
 			);
 			path = "Swift Carpoolers";
+			sourceTree = "<group>";
+		};
+		7CD351E92194AB3A005EFB28 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7C2493D12193743D00E10869 /* ViewController.swift */,
+				7C2493CF2193743D00E10869 /* AppDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CD351EA2194AB85005EFB28 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7C2493D32193743D00E10869 /* Main.storyboard */,
+				7C2493D82193743E00E10869 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

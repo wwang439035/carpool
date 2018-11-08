@@ -22,14 +22,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
     
-//    @IBAction func registerUser(_ sender: Any) {
-//        // Make API request with data
-//        print(username)
-//        print(firstName)
-//        print(lastName)
-//        print(password)
-//        print(phoneNumber)
-//    }
     @IBAction func register(_ sender: Any) {
         print(username.text!)
         print(firstName.text!)
@@ -45,13 +37,39 @@ class ViewController: UIViewController {
             "phoneNumber": phoneNumber.text!
         ]
         
+        var url : String = "http://google.com?test=toto&test2=titi"
+        var request : NSMutableURLRequest = NSMutableURLRequest()
+        request.URL = NSURL(string: url)
+        request.HTTPMethod = "GET"
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{ (response:NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            var error: AutoreleasingUnsafeMutablePointer<NSError?> = nil
+            let jsonResult: NSDictionary! = NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers, error: error) as? NSDictionary
+            
+            if (jsonResult != nil) {
+                // process jsonResult
+            } else {
+                // couldn't load JSON, look at error
+            }
+            
+            
+        })
+        
         print(requestBody)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        let vc = navigationController?.viewControllers.first
+//        let button = UIBarButtonItem(barButtonSystemItem: "Go Back", target: self, action: testing)
+//        vc?.navigationItem.backBarButtonItem = button
     }
+    
+//    func testing() {
+//        print("back pressed")
+//    }
     
     
 }
