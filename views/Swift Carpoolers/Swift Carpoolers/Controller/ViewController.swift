@@ -57,8 +57,11 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-//        errorLabel.isHidden = true
         super.viewDidLoad()
+        if(errorLabel != nil){
+           errorLabel.isHidden = true
+        }
+
         
         
         
