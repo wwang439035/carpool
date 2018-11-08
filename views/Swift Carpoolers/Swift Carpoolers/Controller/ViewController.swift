@@ -21,6 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
+
+    @IBOutlet weak var emailAddressText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func register(_ sender: Any) {
         print(username.text!)
@@ -40,14 +44,29 @@ class ViewController: UIViewController {
         print(requestBody)
     }
     
+    @IBAction func LoginButton(_ sender: UIButton) {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        if(emailTest.evaluate(with: emailAddressText.text) && passwordText.hasText){
+            errorLabel.isHidden = true
+            print(true)
+        } else {
+            errorLabel.isHidden = false
+        }
+    }
+    
     override func viewDidLoad() {
+//        errorLabel.isHidden = true
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
         
 //        let vc = navigationController?.viewControllers.first
 //        let button = UIBarButtonItem(barButtonSystemItem: "Go Back", target: self, action: testing)
 //        vc?.navigationItem.backBarButtonItem = button
     }
+
     
 //    func testing() {
 //        print("back pressed")
