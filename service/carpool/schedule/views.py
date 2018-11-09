@@ -33,8 +33,8 @@ class ScheduleList(APIView):
             serializer.save()
             try:
                 send_email_to_rider(serializer.data['user'])
-            except:
-                pass
+            except Exception as e:
+                print(e)
             response = ResponseTemplate.get_success_response()
         else:
             response = ResponseTemplate.get_failure_response('Save schedule failed')
