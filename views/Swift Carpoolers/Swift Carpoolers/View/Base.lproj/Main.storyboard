@@ -345,7 +345,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GU2-Qa-jrl"/>
-                                            <segue destination="mV2-Yr-rud" kind="show" id="LwE-q4-B2w"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fill all the fields correctly" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1v-ld-f8N">
@@ -421,6 +420,7 @@
                         <outlet property="phoneNumber" destination="fXW-Id-rLJ" id="4vi-HI-IKc"/>
                         <outlet property="registerErrorLabel" destination="B1v-ld-f8N" id="Suc-zI-jIf"/>
                         <outlet property="username" destination="LGF-jk-Lrt" id="JCi-Li-imi"/>
+                        <segue destination="mV2-Yr-rud" kind="show" identifier="goToPreferencesSegue" id="VFu-GJ-RZf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

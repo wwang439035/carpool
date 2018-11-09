@@ -44,17 +44,14 @@ class ViewController: UIViewController {
             
             print(response)
             
-            
             if let responseStatus = response["success"] as? Bool, responseStatus {
-                //            performSegue(withIdentifier: "Register", sender: nil)
+                performSegue(withIdentifier: "goToPreferencesSegue", sender: nil)
                 print("Successful")
             } else {
-                performSegue(withIdentifier: "unsuccessfulRegistration", sender: nil)
                 print("Unsuccessful")
             }
             
         } else {
-            performSegue(withIdentifier: "unsuccessfulRegistration", sender: nil)
             registerErrorLabel.isHidden = false
         }
         
