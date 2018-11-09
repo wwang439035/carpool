@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
     
@@ -146,4 +147,33 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func NotifyMeButton(_ sender: UIButton) {
+//        let content = UNMutableNotificationContent()
+//        content.title = "Weekly Staff Meeting"
+//        content.body = "Every Tuesday at 2pm"
+//
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (15), repeats: false)
+//
+//        // Create the request
+//        let uuidString = UUID().uuidString
+//        let request = UNNotificationRequest(identifier: uuidString,
+//                                            content: content, trigger: trigger)
+//
+//        // Schedule the request with the system.
+//        let notificationCenter = UNUserNotificationCenter.current()
+//        notificationCenter.add(request) { (error) in
+//            if error != nil {
+//                // Handle any errors.
+//            }
+//
+//    }
+        var timer: Timer?
+        timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [] _ in
+            self.performSegue(withIdentifier: "bestMatchSegue", sender: nil)
+            }
+        }
+    
+    
 }
+
