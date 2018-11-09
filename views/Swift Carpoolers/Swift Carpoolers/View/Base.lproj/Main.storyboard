@@ -953,7 +953,7 @@
                                             <constraint firstAttribute="width" constant="60" id="VhJ-Jz-05m"/>
                                         </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="You : Picking Timmy at 5:00PM         Vehicle : Toyata Prius ABC123 " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVk-qf-jtP">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="You : Picking Timmy at 5:00PM         " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVk-qf-jtP">
                                         <rect key="frame" x="82" y="273" width="222" height="49.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
