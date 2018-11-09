@@ -430,7 +430,7 @@
         <!--Preferences-->
         <scene sceneID="hiz-jM-3xj">
             <objects>
-                <viewController id="mV2-Yr-rud" sceneMemberID="viewController">
+                <viewController id="mV2-Yr-rud" customClass="ViewController" customModule="Swift_Carpoolers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fgl-eE-S8B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -625,6 +625,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bg2-b4-Vd1"/>
+                                            <action selector="savePreferences:" destination="mV2-Yr-rud" eventType="touchUpInside" id="T0m-tR-2fA"/>
                                             <segue destination="IFF-1r-vSV" kind="show" id="72F-zy-dnJ"/>
                                         </connections>
                                     </button>
@@ -669,6 +670,14 @@
                         <viewLayoutGuide key="safeArea" id="DF7-93-qt8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Preferences" id="UNc-kH-axt"/>
+                    <connections>
+                        <outlet property="currentLocation" destination="U5Q-lJ-TQk" id="eqn-Rm-A6o"/>
+                        <outlet property="destination" destination="ICv-7z-DUy" id="cYy-jw-qUH"/>
+                        <outlet property="driver" destination="D5c-bE-zgX" id="IsT-3n-coh"/>
+                        <outlet property="firstStop" destination="H7z-uL-657" id="hxK-s7-VZ8"/>
+                        <outlet property="gender" destination="kkc-Vw-FIL" id="GSR-Yr-pZ0"/>
+                        <outlet property="secondStop" destination="bPA-zy-lbg" id="yhK-vq-10Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZu-vj-0Xf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -732,6 +741,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fRi-7Y-071"/>
+                                            <action selector="scheduleTime:" destination="IFF-1r-vSV" eventType="touchUpInside" id="7GR-zv-i2Y"/>
                                             <segue destination="uh2-Ri-unz" kind="show" id="ZYh-dq-CgL"/>
                                         </connections>
                                     </button>
@@ -819,6 +829,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cee-pO-9Xa"/>
                     </view>
+                    <connections>
+                        <outlet property="preferredTime" destination="wmq-0w-FSI" id="eRE-QK-ebA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9z5-rJ-BH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
