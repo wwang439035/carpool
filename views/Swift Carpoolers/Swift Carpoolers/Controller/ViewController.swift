@@ -27,12 +27,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func register(_ sender: Any) {
-        print(username.text!)
-        print(firstName.text!)
-        print(lastName.text!)
-        print(password.text!)
-        print(phoneNumber.text!)
-        
         let requestBody: [String: String] = [
             "username": username.text!,
             "firstName": firstName.text!,
@@ -41,7 +35,15 @@ class ViewController: UIViewController {
             "phoneNumber": phoneNumber.text!
         ]
         
-        print(requestBody)
+        let response = makeRequest("GET", "https://api.github.com/search/users?q=timmy-lee", requestBody)
+        
+        print(response)
+        
+        if let responseStatus = response["status"] as? Bool, responseStatus {
+            print("Successful")
+        } else {
+            print("Unsuccessful")
+        }
     }
     
     @IBAction func LoginButton(_ sender: UIButton) {
@@ -61,19 +63,52 @@ class ViewController: UIViewController {
         if(errorLabel != nil){
            errorLabel.isHidden = true
         }
-
-        
-        
-        
-//        let vc = navigationController?.viewControllers.first
-//        let button = UIBarButtonItem(barButtonSystemItem: "Go Back", target: self, action: testing)
-//        vc?.navigationItem.backBarButtonItem = button
     }
-
     
-//    func testing() {
-//        print("back pressed")
-//    }
+    func makeRequest(_ method: String, _ url: String, _ params: [String: String]) -> Dictionary<String, Any> {
+        var request = URLRequest(url: URL(string: url)!)
+        let semaphore = DispatchSemaphore(value: 0)
+        request.httpMethod = method
+
+        if (method != "GET") {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            } catch let error {
+                return ["error": error]
+            }
+        }
+        let session = URLSession.shared
+        
+        var responseDict : [String: Any] = [String: Any]()
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            guard error == nil else {
+                print("error ")
+                return
+            }
+            
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return 
+            }
+            
+            do {
+                let responseJson = try JSONSerialization.jsonObject(with: responseData, options: [])
+                guard let castedResponse = responseJson as? [String: Any] else { return }
+//                guard let responseArray = responseJson as? [[String: Any]] else { return } // Assuming response is an array
+                semaphore.signal()
+                responseDict = castedResponse
+            } catch {
+                print("error trying to convert data to JSON")
+                return
+            }
+        }
+
+        task.resume()
+        semaphore.wait()
+        
+        return responseDict
+    }
     
     
 }
