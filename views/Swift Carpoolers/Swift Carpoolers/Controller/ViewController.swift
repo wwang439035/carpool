@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
-
+    @IBOutlet weak var registerErrorLabel: UILabel!
+    
     @IBOutlet weak var emailAddressText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -35,35 +36,32 @@ class ViewController: UIViewController {
             "phone_number": phoneNumber.text!,
             "gender": "placeholder"
         ]
-        
-//        let requestBody: [String: String] = [
-//            "user_id": "tilee2122rewrw34@marketo.com",
-//            "first_name": "firstName.text!",
-//            "last_name": "lastName.text!",
-//            "password": "password.text!",
-//            "phone_number": "phoneNumber.text!",
-//            "gender": "placeholder"
-//        ]
-        
-        let response = makeRequest("POST", "http://35.235.94.177:8000/users/reg/", requestBody)
-        
-        print(response)
-        
-        
-        if let responseStatus = response["success"] as? Bool, responseStatus {
-//            performSegue(withIdentifier: "Register", sender: nil)
-            print("Successful")
+        if(validateEmailAddress(email: username.text ?? "") && firstName.hasText && lastName.hasText && password.hasText){
+            registerErrorLabel.isHidden = true
+            
+            //api call
+            let response = makeRequest("POST", "http://35.235.94.177:8000/users/reg/", requestBody)
+            
+            print(response)
+            
+            
+            if let responseStatus = response["success"] as? Bool, responseStatus {
+                //            performSegue(withIdentifier: "Register", sender: nil)
+                print("Successful")
+            } else {
+                performSegue(withIdentifier: "unsuccessfulRegistration", sender: nil)
+                print("Unsuccessful")
+            }
+            
         } else {
             performSegue(withIdentifier: "unsuccessfulRegistration", sender: nil)
-            print("Unsuccessful")
+            registerErrorLabel.isHidden = false
         }
+        
     }
     
     @IBAction func LoginButton(_ sender: UIButton) {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        
-        if(emailTest.evaluate(with: emailAddressText.text) && passwordText.hasText){
+        if(validateEmailAddress(email: emailAddressText.text ?? "") && passwordText.hasText){
             errorLabel.isHidden = true
             print(true)
         } else {
@@ -71,10 +69,21 @@ class ViewController: UIViewController {
         }
     }
     
+    func validateEmailAddress(email: String) -> Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
+        return emailTest.evaluate(with: email)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if(errorLabel != nil){
            errorLabel.isHidden = true
+        }
+        
+        if(registerErrorLabel != nil){
+            registerErrorLabel.isHidden = true
         }
     }
     
