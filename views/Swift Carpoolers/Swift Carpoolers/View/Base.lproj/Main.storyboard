@@ -703,6 +703,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fRi-7Y-071"/>
+                                            <segue destination="uh2-Ri-unz" kind="show" id="ZYh-dq-CgL"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sg-mT-9Ll">
@@ -763,8 +764,6 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="275" id="6ar-f7-PFG"/>
                                     <constraint firstAttribute="width" constant="275" id="7zh-8i-ykC"/>
                                     <constraint firstItem="wmq-0w-FSI" firstAttribute="top" secondItem="gmW-Be-Cb4" secondAttribute="bottom" constant="54" id="8SC-bC-LWc"/>
-                                    <constraint firstItem="gmW-Be-Cb4" firstAttribute="leading" secondItem="KAh-vS-nSJ" secondAttribute="leading" constant="109" id="BEn-Ju-CQi"/>
-                                    <constraint firstItem="gmW-Be-Cb4" firstAttribute="top" secondItem="5Sg-mT-9Ll" secondAttribute="bottom" constant="41" id="G2H-eX-tDc"/>
                                     <constraint firstItem="fCt-pb-czL" firstAttribute="top" secondItem="gmW-Be-Cb4" secondAttribute="bottom" constant="54" id="JIt-ac-2Wf"/>
                                     <constraint firstItem="wmq-0w-FSI" firstAttribute="leading" secondItem="KAh-vS-nSJ" secondAttribute="leading" constant="17" id="Oxu-D6-ame"/>
                                     <constraint firstItem="5Sg-mT-9Ll" firstAttribute="leading" secondItem="KAh-vS-nSJ" secondAttribute="leading" constant="70" id="RuW-mT-3kL"/>
@@ -795,6 +794,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9z5-rJ-BH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="996" y="-774.06296851574223"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2uV-BX-EBD">
+            <objects>
+                <viewController id="uh2-Ri-unz" customClass="ViewController" customModule="Swift_Carpoolers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7JF-3p-TXw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7e-Mk-pyH" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aecb291a800d6493f475ecb087d90636--flowers-wallpaper-blue-art" translatesAutoresizingMaskIntoConstraints="NO" id="Kob-uh-tEd">
+                                        <rect key="frame" x="0.0" y="0.0" width="413" height="736"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="You have successfully submitted the request. Wait until you get a match! 😊🚗" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2t-rV-LqT">
+                                        <rect key="frame" x="36" y="194" width="301" height="297"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="297" id="CNx-5T-41G"/>
+                                            <constraint firstAttribute="width" constant="301" id="HUg-X9-tdq"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="38"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="O2t-rV-LqT" firstAttribute="leading" secondItem="l7e-Mk-pyH" secondAttribute="leading" constant="36" id="Bkq-p6-cH6"/>
+                                    <constraint firstAttribute="height" constant="667" id="JP7-ad-LGM"/>
+                                    <constraint firstAttribute="width" constant="375" id="aSc-ep-hMS"/>
+                                    <constraint firstItem="O2t-rV-LqT" firstAttribute="top" secondItem="l7e-Mk-pyH" secondAttribute="top" constant="194" id="lwl-4F-Kzi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="l7e-Mk-pyH" firstAttribute="leading" secondItem="wqw-pZ-Ubx" secondAttribute="leading" id="VxU-XY-suJ"/>
+                            <constraint firstItem="l7e-Mk-pyH" firstAttribute="top" secondItem="7JF-3p-TXw" secondAttribute="top" id="kJR-Ax-WFM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wqw-pZ-Ubx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yDG-bE-YqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="-774.06296851574223"/>
         </scene>
     </scenes>
     <resources>
