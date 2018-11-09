@@ -35,7 +35,15 @@ class ViewController: UIViewController {
             "phoneNumber": phoneNumber.text!
         ]
         
-        makeRequest("POST", "https://ptsv2.com/t/32ki3-1541721566/post", requestBody)
+        let response = makeRequest("GET", "https://api.github.com/search/users?q=timmy-lee", requestBody)
+        
+        print(response)
+        
+        if let responseStatus = response["status"] as? Bool, responseStatus {
+            print("Successful")
+        } else {
+            print("Unsuccessful")
+        }
     }
     
     @IBAction func LoginButton(_ sender: UIButton) {
@@ -57,42 +65,49 @@ class ViewController: UIViewController {
         }
     }
     
-    func makeRequest(_ method: String, _ url: String, _ params: [String: String]) {
+    func makeRequest(_ method: String, _ url: String, _ params: [String: String]) -> Dictionary<String, Any> {
         var request = URLRequest(url: URL(string: url)!)
+        let semaphore = DispatchSemaphore(value: 0)
         request.httpMethod = method
 
         if (method != "GET") {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
             } catch let error {
-                print(error)
-                return
+                return ["error": error]
             }
         }
         let session = URLSession.shared
         
-        session.dataTask(with: request) {
+        var responseDict : [String: Any] = [String: Any]()
+        let task = session.dataTask(with: request) {
             (data, response, error) in
             guard error == nil else {
                 print("error ")
-                print(error!)
                 return
             }
             
             guard let responseData = data else {
                 print("Error: did not receive data")
-                return
+                return 
             }
             
             do {
                 let responseJson = try JSONSerialization.jsonObject(with: responseData, options: [])
-                guard let responseArray = responseJson as? [[String: Any]] else { return } // Assuming response is an array
-                print(responseArray[0])
+                guard let castedResponse = responseJson as? [String: Any] else { return }
+//                guard let responseArray = responseJson as? [[String: Any]] else { return } // Assuming response is an array
+                semaphore.signal()
+                responseDict = castedResponse
             } catch {
                 print("error trying to convert data to JSON")
                 return
             }
-        }.resume()
+        }
+
+        task.resume()
+        semaphore.wait()
+        
+        return responseDict
     }
     
     
