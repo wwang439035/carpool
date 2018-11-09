@@ -1,7 +1,7 @@
 class ResponseTemplate:
 
     @staticmethod
-    def get_success_response(data, count=None):
+    def get_success_response(data=None, count=None):
         response = {
             'success': True,
         }

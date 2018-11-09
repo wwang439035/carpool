@@ -10,8 +10,8 @@ class User(models.Model):
     email = models.EmailField()
     phone_number = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
-    created_at = models.DateField(auto_now_add=True, blank=True)
-    updated_at = models.DateField(default=now, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_at = models.DateTimeField(default=now, blank=True)
 
     class Meta:
         db_table = 'user_profile'

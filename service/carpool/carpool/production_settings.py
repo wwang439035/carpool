@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+^uw2%y4-f2&i1*gzp^gu1nv*!j9bv+#lc9b8s6on$_e3vvg20'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['35.235.94.177']
 
@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'http_utils',
+    'google_api',
+    'notification',
+    'schedule',
     'user'
 ]
 
@@ -86,6 +90,19 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER_NAME')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_USER_PASSWORD')
+EMAIL_PORT = 587
+
+
+GOOGLE_MAP_DIRECTION_URL = 'https://maps.googleapis.com/maps/api/directions/json?'
+GOOGLE_MAP_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?'
+GOOGLE_API_KEY = os.environ.get('GOOGLE_KEY')
 
 
 # Password validation

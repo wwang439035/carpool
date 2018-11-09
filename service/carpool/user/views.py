@@ -6,6 +6,7 @@ from user.models import User, Preference, HistoryAddress
 from user.serializer import UserSerializer, PreferenceSerializer, HistoryAddressSerializer
 from carpool.response_template import ResponseTemplate
 from django.contrib.auth.hashers import make_password, check_password
+import json
 
 
 class UserList(APIView):
@@ -76,6 +77,7 @@ class Registration(APIView):
 
 class Login(APIView):
     def post(self, request, format=None):
+        print('API: /users/login.json\n' + json.dumps(request.data, indent=2))
         user_id = request.data['user_id']
         password = request.data['password']
         try:
