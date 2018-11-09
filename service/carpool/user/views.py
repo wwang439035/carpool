@@ -58,7 +58,10 @@ class Registration(APIView):
             serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
             serializer.save()
 
-            Preference.objects.create(user_id=serializer.data['id'])
+            gender_type = getattr(request.data, 'gender_type', 'any')
+            time_window = getattr(request.data, 'time_window', 600)
+
+            Preference.objects.create(user_id=serializer.data['id'], gender_type=gender_type, time_window=time_window)
 
             data = {
                 'id': serializer.data['id'],

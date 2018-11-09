@@ -4,6 +4,8 @@ import sys
 
 if __name__ == '__main__':
     settings = os.environ.get('DJANGO_SETTINGS_MODULE')
+    if settings is None:
+        settings = 'carpool.settings'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings)
 
     try:
