@@ -27,30 +27,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func register(_ sender: Any) {
-//        let requestBody: [String: String] = [
-//            "user_id": username.text!,
-//            "first_name": firstName.text!,
-//            "last_name": lastName.text!,
-//            "password": password.text!,
-//            "phone_number": phoneNumber.text!
-//        ]
-        
         let requestBody: [String: String] = [
-            "user_id": "tilee212234@marketo.com",
-            "first_name": "firstName.text!",
-            "last_name": "lastName.text!",
-            "password": "password.text!",
-            "phone_number": "phoneNumber.text!",
+            "user_id": username.text!,
+            "first_name": firstName.text!,
+            "last_name": lastName.text!,
+            "password": password.text!,
+            "phone_number": phoneNumber.text!,
             "gender": "placeholder"
         ]
+        
+//        let requestBody: [String: String] = [
+//            "user_id": "tilee2122rewrw34@marketo.com",
+//            "first_name": "firstName.text!",
+//            "last_name": "lastName.text!",
+//            "password": "password.text!",
+//            "phone_number": "phoneNumber.text!",
+//            "gender": "placeholder"
+//        ]
         
         let response = makeRequest("POST", "http://35.235.94.177:8000/users/reg/", requestBody)
         
         print(response)
         
+        
         if let responseStatus = response["success"] as? Bool, responseStatus {
+//            performSegue(withIdentifier: "Register", sender: nil)
             print("Successful")
         } else {
+            performSegue(withIdentifier: "unsuccessfulRegistration", sender: nil)
             print("Unsuccessful")
         }
     }
@@ -72,6 +76,16 @@ class ViewController: UIViewController {
         if(errorLabel != nil){
            errorLabel.isHidden = true
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
+        if let ident = identifier {
+            if ident == "unsuccessfulRegistration" {
+                return false
+            }
+            return true
+        }
+        return true
     }
     
     func makeRequest(_ method: String, _ url: String, _ params: [String: String]) -> Dictionary<String, Any> {
